@@ -1,23 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Chess</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" type="image/jpg" href="img/favicon.jpg" />
 </head>
+
 <body>
-    <h1>Chess</h1>
-    <canvas id="chessCanvas" width="400" height="400" style="margin-left:37%;"></canvas>
-    <h2 id="currentTeamText"></h2>
-    <h2>White pieces lost:</h2>
-    <h3 id="whiteCasualities">
-        </h2>
-        <h2>Black pieces lost:</h2>
-        <h3 id="blackCasualities">
-            </h2>
-            <h2 id="totalVictories"></h2>
-    <script src="script.js"></script>
+    <div class="chess-table">
+        <div>
+        <div id="h8" class="piece-box black-box 00"></div>
+        <div id="g8" class="piece-box white-box 10"></div>
+        <div id="f8" class="piece-box black-box 20"></div>
+        <div id="e8" class="piece-box white-box 30"></div>
+        <div id="d8" class="piece-box black-box 40"></div>
+        <div id="c8" class="piece-box white-box 50"></div>
+        <div id="b8" class="piece-box black-box 60"></div>
+        <div id="a8" class="piece-box white-box 70"></div>
+        </div>
+
+        <div>
+        <div id="h7" class="piece-box white-box 01"></div>
+        <div id="g7" class="piece-box black-box 11"></div>
+        <div id="f7" class="piece-box white-box 21"></div>
+        <div id="e7" class="piece-box black-box 31"></div>
+        <div id="d7" class="piece-box white-box 41"></div>
+        <div id="c7" class="piece-box black-box 51"></div>
+        <div id="b7" class="piece-box white-box 61"></div>
+        <div id="a7" class="piece-box black-box 71"></div>
+        </div>
+        <div>
+        <div id="h6" class="piece-box black-box 02"></div>
+        <div id="g6" class="piece-box white-box 12"></div>
+        <div id="f6" class="piece-box black-box 22"></div>
+        <div id="e6" class="piece-box white-box 32"></div>
+        <div id="d6" class="piece-box black-box 42"></div>
+        <div id="c6" class="piece-box white-box 52"></div>
+        <div id="b6" class="piece-box black-box 62"></div>
+        <div id="a6" class="piece-box white-box 72"></div>
+        </div>
+        <div>
+        <div id="h5" class="piece-box white-box 03"></div>
+        <div id="g5" class="piece-box black-box 13"></div>
+        <div id="f5" class="piece-box white-box 23"></div>
+        <div id="e5" class="piece-box black-box 33"></div>
+        <div id="d5" class="piece-box white-box 43"></div>
+        <div id="c5" class="piece-box black-box 53"></div>
+        <div id="b5" class="piece-box white-box 63"></div>
+        <div id="a5" class="piece-box black-box 73"></div>
+            </div>
+            <div>
+        <div id="h4" class="piece-box black-box 04"></div>
+        <div id="g4" class="piece-box white-box  14"></div>
+        <div id="f4" class="piece-box black-box 24"></div>
+        <div id="e4" class="piece-box white-box  34"></div>
+        <div id="d4" class="piece-box black-box 44"></div>
+        <div id="c4" class="piece-box white-box  54"></div>
+        <div id="b4" class="piece-box black-box  64"></div>
+        <div id="a4" class="piece-box white-box 74"></div>
+        </div>
+        <div>
+        <div id="h3" class="piece-box white-box 05"></div>
+        <div id="g3" class="piece-box black-box 15"></div>
+        <div id="f3" class="piece-box white-box 25"></div>
+        <div id="e3" class="piece-box black-box 35"></div>
+        <div id="d3" class="piece-box white-box 45"></div>
+        <div id="c3" class="piece-box black-box 55"></div>
+        <div id="b3" class="piece-box white-box 65"></div>
+        <div id="a3" class="piece-box black-box 75"></div>
+        </div>
+        <div>
+        <div id="h2" class="piece-box black-box 06"></div>
+        <div id="g2" class="piece-box white-box 16"></div>
+        <div id="f2" class="piece-box black-box 26"></div>
+        <div id="e2" class="piece-box white-box 36"></div>
+        <div id="d2" class="piece-box black-box 46"></div>
+        <div id="c2" class="piece-box white-box 56"></div>
+        <div id="b2" class="piece-box black-box 66"></div>
+        <div id="a2" class="piece-box white-box 76"></div>
+         </div>
+         <div>
+        <div id="h1" class="piece-box white-box 07"></div>
+        <div id="g1" class="piece-box black-box 17"></div>
+        <div id="f1" class="piece-box white-box 27"></div>
+        <div id="e1" class="piece-box black-box 37"></div>
+        <div id="d1" class="piece-box white-box 47"></div>
+        <div id="c1" class="piece-box black-box  57"></div>
+        <div id="b1" class="piece-box white-box 67"></div>
+        <div id="a1" class="piece-box black-box  77"></div>
+        </div>
+    </div>
+
+   <!-- <div class="chess-message">
+        <div class="black-wins check-mate-message fade-in">Black Wins</div>
+        <div class="white-wins check-mate-message fade-in">White Wins</div>
+    </div>-->
+
+    <script src="script.js" defer type="module"></script>
 </body>
+
 </html>
