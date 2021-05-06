@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded",onLoad);
 function onLoad()
 {
      chessBox=document.querySelectorAll('.piece-box');
-    console.log(chessBox);
+ //   console.log(chessBox);
     for(let i=0;i<chessBox.length;i++)
     {
      chessBox[i].addEventListener('click',onClick);
@@ -63,7 +63,7 @@ function startGame()
     board = new Board();
     curX = -1;
     curY = -1;
-     console.log(board);
+    // console.log(board);
     currentTeam = WHITE;
    // currentTeamText.textContent = "White's turn";
 
@@ -73,8 +73,8 @@ function startGame()
 }
 function repaintBoard()
 {
-  //  drawBoard();
-  //  checkPossiblePlays();
+   // drawBoard();
+  // checkPossiblePlays();
     drawPieces();
 }
 function drawPieces() {
@@ -84,15 +84,15 @@ function drawPieces() {
             if (board.tiles[i][j].team === EMPTY) continue;
 
             if (board.tiles[i][j].team === WHITE) {
-                pieceType = './img/White' +piecesCharacters[board.tiles[i][j].pieceType];
+                pieceType = './img/White'+piecesCharacters[board.tiles[i][j].pieceType];
             } else {
-                pieceType = './img/Black' + piecesCharacters[board.tiles[i][j].pieceType];
+                pieceType = './img/Black'+ piecesCharacters[board.tiles[i][j].pieceType];
             }
-           console.log(i,j);
+         //  console.log(i,j);
             const classes=i.toString()+j.toString()
-        console.log(pieceType);
+       // console.log(pieceType);
           const piece=document.getElementsByClassName(classes);
-          console.log(piece[0]);
+        //  console.log(piece[0]);
             let pieceImg = document.createElement("IMG");
             pieceImg.setAttribute('src',pieceType);
             pieceImg.setAttribute('class','piece')
@@ -105,8 +105,59 @@ function drawPieces() {
 function onClick()
 {
    console.log(this);
-    this.style.backgroundColor='red'
+    //this.style.backgroundColor='red'
+    const Class=this.classList[2];
+     let x=Number(Class[0])
+    let y = Number(Class[1])
+
+    if (checkValidMovement(x, y) === true) {
+        if (checkValidCapture(x, y) === true) {
+            if (board.tiles[y][x].pieceType === KING) {
+                if (currentTeam === WHITE) whiteVictories++;
+                else blackVictories++;
+
+                startGame();
+            }
+
+            if (currentTeam === WHITE) {
+                blackCasualities[board.tiles[y][x].pieceType]++;
+              //  updateBlackCasualities();
+            } else {
+                whiteCasualities[board.tiles[y][x].pieceType]++;
+               // updateWhiteCasualities();
+            }
+        }
+
+        moveSelectedPiece(x, y);
+
+        changeCurrentTeam();
+    } else {
+        curX = x;
+        curY = y;
+    }
+
+   // repaintBoard();
 }
+function checkValidMovement(x, y) {
+    if (board.validMoves[y][x] === VALID || board.validMoves[y][x] === VALID_CAPTURE) return true;
+    else return false;
+}
+function checkValidCapture(x, y) {
+    if (board.validMoves[y][x] === VALID_CAPTURE) return true;
+    else return false;
+}
+function moveSelectedPiece(x, y) {
+    board.tiles[y][x].pieceType = board.tiles[curY][curX].pieceType;
+    board.tiles[y][x].team = board.tiles[curY][curX].team;
+
+    board.tiles[curY][curX].pieceType = EMPTY;
+    board.tiles[curY][curX].team = EMPTY;
+
+    curX = -1;
+    curY = -1;
+    board.resetValidMoves();
+}
+
 class Board {
     constructor() {
         this.tiles = [];
